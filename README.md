@@ -51,8 +51,6 @@ This project is an offline-first **User Directory** Android application built us
 ### 3️⃣ Offline Mode (Cached Data)
 ![Offline](screenshots/offline.png)
 
-### 4️⃣ DAO or API Screenshot
-![DAO/API](screenshots/dao_api.png)
 
 ---
 
@@ -87,7 +85,7 @@ Room (Local DB)    Retrofit (Remote API)
 
 ---
 
-## ✨ Two-Line Implementation Summary (Required)
+## ✨ Implementation Summary
 
 This app fetches user data from the JSONPlaceholder API using Retrofit and stores it in a local Room database, making Room the single source of truth. It implements an offline-first pattern where cached users display instantly, and data refreshes automatically when network connectivity is available.
 
@@ -141,4 +139,3 @@ This is an **individual assignment**, submitted with:
 
 ---
 
-# ✅ End of README

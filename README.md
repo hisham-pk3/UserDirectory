@@ -43,13 +43,13 @@ This project is an offline-first **User Directory** Android application built us
 > Replace these placeholders with your actual screenshots.
 
 ### 1️⃣ User List (Online Mode)
-![User list](screenshots/online_list.jpeg)
+<img src="screenshots/online_list.png" width="350">
 
 ### 2️⃣ Search Function
-![Search](screenshots/search.jpeg)
+<img src="screenshots/search.png" width="350">
 
 ### 3️⃣ Offline Mode (Cached Data)
-![Offline](screenshots/offline.jpeg)
+<img src="screenshots/offline.png" width="350">
 
 
 ---

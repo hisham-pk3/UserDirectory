@@ -1,67 +1,144 @@
 # User Directory – Offline-First Android App
 
-An offline-first **User Directory** application built using **Kotlin, Jetpack Compose, Room, Retrofit, Coroutines, and MVVM architecture**.  
-The app fetches user data from the public JSONPlaceholder API, caches it locally, and displays users even when the device is offline.
+This project is an offline-first **User Directory** Android application built using **Kotlin, Jetpack Compose, Room, Retrofit, Coroutines, and MVVM architecture**. The app fetches user data from the JSONPlaceholder API, stores it locally using Room, and displays the data even when the device is offline.
 
 ---
 
 ## 🚀 Features
 
-### ✔ Fetch Users from Public API (GET)
-- Uses Retrofit to retrieve users from `https://jsonplaceholder.typicode.com/users`
-- GET-only operation (no POST/PUT/DELETE)
+### ✔ Fetch Users from Public API (GET only)
+- Uses Retrofit to call the endpoint: `https://jsonplaceholder.typicode.com/users`
+- Retrieves 10 user objects (id, name, username, email, phone, website)
+- GET ONLY — no POST/PUT/DELETE, as required
 
-### ✔ Local Caching with Room Database
-- Users are stored in a Room table
-- Insertions use `OnConflictStrategy.REPLACE` to keep data updated
-- UI always reads from Room (single source of truth)
+### ✔ Local Caching with Room (Single Source of Truth)
+- User data is stored in a **Room Database**
+- `@Insert(onConflict = REPLACE)` keeps cached data updated
+- UI always reads from Room using **Flow**
+- API results are NEVER displayed directly
 
 ### ✔ Offline-First Architecture
-- On app launch, Room data displays instantly  
-- App attempts API refresh  
-- If online → updates Room → UI auto-refreshes  
-- If offline → cached data still appears
+- On app launch:
+  1. Displays cached Room data instantly  
+  2. Attempts API fetch  
+  3. On success → updates Room  
+  4. UI auto-updates through StateFlow  
+  5. On failure → cached data continues to display  
+- Fully usable without internet after first successful load
 
 ### ✔ Local Search (Room SQL Query)
 - Search by **name** or **email**
-- Uses SQL `LIKE` query inside DAO
-- No API request triggered during search
+- Implemented using SQL `LIKE` query inside DAO
+- Search is fully local (NO API calls)
+- Works both online and offline
 
-### ✔ Jetpack Compose UI
-- Simple, clean list layout
-- Displays **id, name, email, phone**
-- Includes search bar and loading state
+### ✔ Modern Compose UI
+- Displays id, name, email, and phone number
+- Includes a search bar, error messages, and loading UI state
 
 ---
 
 ## 📱 Screenshots
 
-> Replace the placeholders below with your actual screenshots.
+> Replace these placeholders with your actual screenshots.
 
 ### 1️⃣ User List (Online Mode)
-![User List Screenshot](screenshots/online_list.png)
+![User list](screenshots/online_list.png)
 
 ### 2️⃣ Search Function
-![Search Screenshot](screenshots/search.png)
+![Search](screenshots/search.png)
 
 ### 3️⃣ Offline Mode (Cached Data)
-![Offline Screenshot](screenshots/offline.png)
+![Offline](screenshots/offline.png)
 
-### 4️⃣ DAO or API Code Screenshot
-![DAO Screenshot](screenshots/dao_api.png)
+### 4️⃣ DAO or API Screenshot
+![DAO/API](screenshots/dao_api.png)
 
 ---
 
-## 🛠️ Tech Stack
+## 📦 Tech Stack
 
 - **Kotlin**
 - **Jetpack Compose**
 - **Room Database**
 - **Retrofit + Gson**
-- **Coroutines (Flow / StateFlow)**
+- **Coroutines (Flow & suspend functions)**
 - **MVVM Architecture**
+- **StateFlow for reactive UI state**
 
 ---
 
 ## 🧩 Architecture Overview
 
+```
+UI (Jetpack Compose)
+        ↓ (collects StateFlow)
+ViewModel
+        ↓ (calls repository)
+Repository
+   ↙                 ↘
+Room (Local DB)    Retrofit (Remote API)
+```
+
+- UI subscribes to database updates via Flow  
+- Room is the **single source of truth**  
+- Repository syncs API → Room  
+- ViewModel exposes clean UI state to Compose  
+
+---
+
+## ✨ Two-Line Implementation Summary (Required)
+
+This app fetches user data from the JSONPlaceholder API using Retrofit and stores it in a local Room database, making Room the single source of truth. It implements an offline-first pattern where cached users display instantly, and data refreshes automatically when network connectivity is available.
+
+---
+
+## 📥 How to Run
+
+1. Clone the repository:
+   ```bash
+   git clone <your-github-url>
+   ```
+2. Open the project in **Android Studio Koala or newer**
+3. Ensure **JDK 17** + the **Compose Compiler plugin** are configured
+4. Run the app on a device or emulator
+
+---
+
+## 📚 Project Structure
+
+```
+app/
+ └── src/main/java/com/example/userdirectory/
+      ├── data/
+      │    ├── local/ (Entity, DAO, Room Database)
+      │    ├── remote/ (Retrofit API service)
+      │    └── UserRepository.kt
+      ├── ui/ (Compose UI + ViewModel)
+      └── MainActivity.kt
+```
+
+---
+
+## 👤 Author
+
+**Hisham Panamthodi Kajahussain**  
+CPSC 411A – Android Development  
+
+---
+
+## 📎 Submission Info
+
+This is an **individual assignment**, submitted with:
+- GitHub repository link  
+- App overview  
+- Required screenshots  
+- Two-line core functionality description  
+
+```
+👉 GitHub Repo: https://github.com/<your-username>/UserDirectory
+```
+
+---
+
+# ✅ End of README

@@ -40,7 +40,7 @@ This project is an offline-first **User Directory** Android application built us
 
 ## 📱 Screenshots
 
-> Replace these placeholders with your actual screenshots.
+
 
 ### 1️⃣ User List (Online Mode)
 <img src="screenshots/online_list.jpeg" width="350">
@@ -95,7 +95,7 @@ This app fetches user data from the JSONPlaceholder API using Retrofit and store
 
 1. Clone the repository:
    ```bash
-   git clone <your-github-url>
+   git clone https://github.com/hisham-pk3/UserDirectory.git
    ```
 2. Open the project in **Android Studio Koala or newer**
 3. Ensure **JDK 17** + the **Compose Compiler plugin** are configured
@@ -134,7 +134,7 @@ This is an **individual assignment**, submitted with:
 - Two-line core functionality description  
 
 ```
-👉 GitHub Repo: https://github.com/<your-username>/UserDirectory
+👉 GitHub Repo: https://github.com/hisham-pk3/UserDirectory.git
 ```
 
 ---
